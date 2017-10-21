@@ -456,7 +456,7 @@ interface Creep extends RoomObject {
     /**
      * A shorthand to Memory.creeps[creep.name]. You can use it for quick access the creep’s specific memory data object.
      */
-    memory: any;
+    memory: CreepMemory;
     /**
      * Whether it is your creep or foe.
      */
@@ -645,6 +645,8 @@ interface Creep extends RoomObject {
 }
 interface CreepConstructor extends _Constructor<Creep>, _ConstructorById<Creep> {
 }
+interface CreepMemory {
+}
 declare const Creep: CreepConstructor;
 /**
  * A flag. Flags can be used to mark particular spots in a room. Flags are visible to their owners only.
@@ -658,7 +660,7 @@ interface Flag extends RoomObject {
     /**
      * A shorthand to Memory.flags[flag.name]. You can use it for quick access the flag's specific memory data object.
      */
-    memory: any;
+    memory: FlagMemory;
     /**
      * Flag’s name. You can choose the name while creating a new flag, and it cannot be changed later. This name is a hash key to access the spawn via the Game.flags object.
      */
@@ -698,6 +700,8 @@ interface Flag extends RoomObject {
 interface FlagConstructor extends _Constructor<Flag> {
     new (name: string, color: number, secondaryColor: number, roomName: string, x: number, y: number): Flag;
     (name: string, color: number, secondaryColor: number, roomName: string, x: number, y: number): Flag;
+}
+interface FlagMemory {
 }
 declare const Flag: FlagConstructor;
 /**
@@ -1767,7 +1771,7 @@ interface Room {
     /**
      * A shorthand to Memory.rooms[room.name]. You can use it for quick access the room’s specific memory data object.
      */
-    memory: any;
+    memory: RoomMemory;
     /**
      * One of the following constants:
      * MODE_SIMULATION, MODE_SURVIVAL, MODE_WORLD, MODE_ARENA
@@ -1914,6 +1918,8 @@ interface RoomConstructor {
     serializePath(path: PathStep[]): string;
     deserializePath(path: string): PathStep[];
 }
+interface RoomMemory {
+}
 declare const Room: RoomConstructor;
 /**
  * An energy source object. Can be harvested by creeps with a WORK body part.
@@ -1981,7 +1987,7 @@ interface StructureSpawn extends OwnedStructure {
     /**
      * A shorthand to Memory.spawns[spawn.name]. You can use it for quick access the spawn’s specific memory data object.
      */
-    memory: any;
+    memory: SpawnMemory;
     /**
      * Spawn’s name. You choose the name upon creating a new spawn, and it cannot be changed later. This name is a hash key to access the spawn via the Game.spawns object.
      */
@@ -2066,6 +2072,8 @@ interface StructureSpawn extends OwnedStructure {
     transferEnergy(target: Creep, amount?: number): number;
 }
 interface StructureSpawnConstructor extends _Constructor<StructureSpawn>, _ConstructorById<StructureSpawn> {
+}
+interface SpawnMemory {
 }
 declare const StructureSpawn: StructureSpawnConstructor;
 /**
